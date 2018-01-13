@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <ImageView
+        android:id="@+id/shot_image"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/shot_placeholder"
+        android:contentDescription="@string/shot_image"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_shot_detail_bar_height">
+
+        <TextView
+            android:id="@+id/shot_view_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/spacing_large"
+            android:layout_toStartOf="@+id/shot_like_count"
+            android:drawableStart="@drawable/ic_visibility_grey_500_18dp"
+            android:drawablePadding="@dimen/spacing_xsmall"
+            tool:text="12"/>
+
+        <TextView
+            android:id="@+id/shot_like_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/spacing_large"
+            android:layout_toStartOf="@+id/shot_bucket_count"
+            android:drawableStart="@drawable/ic_favorite_grey_500_18dp"
+            android:drawablePadding="@dimen/spacing_xsmall"
+            tool:text="78"/>
+
+        <TextView
+            android:id="@+id/shot_bucket_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/spacing_large"
+            android:layout_alignParentEnd="true"
+            android:drawableStart="@drawable/ic_inbox_grey_500_18dp"
+            android:drawablePadding="@dimen/spacing_xsmall"
+            tool:text="78"/>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

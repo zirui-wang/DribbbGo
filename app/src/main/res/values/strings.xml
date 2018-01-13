@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">DribbbGo</string>
+    <string name="drawer_menu_home">Home</string>
+    <string name="drawer_menu_likes">Likes</string>
+    <string name="drawer_menu_buckets">Buckets</string>
+    <string name="title_home">DribbbGo</string>
+    <string name="title_likes">Likes</string>
+    <string name="title_buckets">Buckets</string>
+    <string name="open_drawer">open drawer</string>
+    <string name="close_drawer">close drawer</string>
+    <string name="shot_image">shot image</string>
 </resources>
