@@ -9,4 +9,8 @@
     <string name="open_drawer">open drawer</string>
     <string name="close_drawer">close drawer</string>
     <string name="shot_image">shot image</string>
+    <string name="likes">Like</string>
+    <string name="shot_author_picture">Shot author picture</string>
+    <string name="activity_login_icon">Dribbble icon</string>
+    <string name="activity_btn_login_text">Log into Dribbble</string>
 </resources>

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <!-- Base application theme. -->
@@ -6,6 +7,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
     <style name="AppTheme.TextView" />
@@ -29,5 +32,6 @@
     <style name="AppTheme.TextView.Clickable.2.White" parent="AppTheme.TextView.Clickable.2">
         <item name="android:textColor">@android:color/white</item>
     </style>
+
 
 </resources>

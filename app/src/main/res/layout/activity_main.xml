@@ -8,11 +8,21 @@
     android:layout_height="match_parent"
     tools:context="io.zirui.dribbbgo.view.MainActivity">
 
-    <!-- The main content view -->
-    <FrameLayout
-        android:id="@+id/fragment_container"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/toolbar"/>
+
+        <!-- The main content view -->
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
 
     <!-- The navigation drawer -->
     <android.support.design.widget.NavigationView
@@ -20,6 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer_menu" />
 
 </android.support.v4.widget.DrawerLayout>

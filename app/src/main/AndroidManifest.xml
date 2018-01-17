@@ -18,7 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.base.SingleFragmentActivity"></activity>
+        <!-- <activity android:name=".view.base.SingleFragmentActivity" /> -->
+        <activity android:name=".view.LoginActivity" />
+        <activity android:name=".dribbble.auth.AuthActivity"></activity>
     </application>
 
 </manifest>

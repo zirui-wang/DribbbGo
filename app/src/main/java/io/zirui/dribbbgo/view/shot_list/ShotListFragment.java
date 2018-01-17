@@ -1,6 +1,7 @@
 package io.zirui.dribbbgo.view.shot_list;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +10,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,8 @@ public class ShotListFragment extends Fragment{
 
     private static final int COUNT_PER_PAGE = 20;
 
+    private ShotListAdapter adapter;
+
     public static ShotListFragment newInstance(){
         return new ShotListFragment();
     }
@@ -42,9 +46,32 @@ public class ShotListFragment extends Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        ShotListAdapter adapter = new ShotListAdapter(fakeData(10));
         recyclerView.addItemDecoration(new SpaceItemDecoration(getResources()
                 .getDimensionPixelSize((R.dimen.spacing_small))));
+        final Handler handler = new Handler();
+        adapter = new ShotListAdapter(fakeData(10), new ShotListAdapter.LoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try{
+                            Thread.sleep(2000);
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    List<Shot> moreData = fakeData(adapter.getDataCount() / COUNT_PER_PAGE);
+                                    adapter.append(moreData);
+                                    adapter.setShowLoading(moreData.size() == COUNT_PER_PAGE);
+                                }
+                            });
+                        }catch (InterruptedException ie){
+                            ie.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+        });
         recyclerView.setAdapter(adapter);
     }
 

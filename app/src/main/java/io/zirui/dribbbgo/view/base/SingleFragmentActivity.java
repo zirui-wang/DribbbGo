@@ -4,16 +4,22 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import butterknife.BindView;
 import io.zirui.dribbbgo.R;
 
 public abstract class SingleFragmentActivity extends AppCompatActivity {
+
+    @BindView(R.id.my_toolbar) Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_fragment);
+
+        setSupportActionBar(toolbar);
 
         if (savedInstanceState == null){
             getSupportFragmentManager()
