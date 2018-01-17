@@ -4,14 +4,18 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
+
+import com.google.gson.JsonSyntaxException;
+
+import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.zirui.dribbbgo.R;
 import io.zirui.dribbbgo.dribbble.Dribbble;
 import io.zirui.dribbbgo.dribbble.auth.Auth;
+import io.zirui.dribbbgo.dribbble.auth.AuthActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -42,5 +46,27 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == Auth.REQ_CODE && resultCode == RESULT_OK){
+            final String authCode = data.getStringExtra(AuthActivity.KEY_CODE);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try{
+                        // get access_token
+                        String token = Auth.fetchAccessToken(authCode);
+
+                        // store access token in SharedPreferences
+                        Dribbble.login(LoginActivity.this, token);
+
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }catch (IOException | JsonSyntaxException e){
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+        }
     }
 }

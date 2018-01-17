@@ -13,4 +13,5 @@
     <string name="shot_author_picture">Shot author picture</string>
     <string name="activity_login_icon">Dribbble icon</string>
     <string name="activity_btn_login_text">Log into Dribbble</string>
+    <string name="auth_activity_title">Log into Dribbble</string>
 </resources>

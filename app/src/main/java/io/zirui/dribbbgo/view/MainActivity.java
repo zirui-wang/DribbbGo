@@ -10,10 +10,13 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import io.zirui.dribbbgo.R;
+import io.zirui.dribbbgo.dribbble.Dribbble;
 import io.zirui.dribbbgo.view.bucket_list.BucketListFragment;
 import io.zirui.dribbbgo.view.shot_list.ShotListFragment;
 
@@ -85,6 +88,11 @@ public class MainActivity extends AppCompatActivity {
                     drawerLayout.closeDrawers();
                     return true;
                 }
+
+                View headerView = navigationView.getHeaderView(0);
+
+                ((TextView) headerView.findViewById(R.id.nav_header_text)).setText(
+                        Dribbble.getCurrentUser().name);
 
                 Fragment fragment = null;
                 switch (item.getItemId()){
