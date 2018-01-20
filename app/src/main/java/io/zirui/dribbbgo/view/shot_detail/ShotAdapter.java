@@ -1,10 +1,14 @@
 package io.zirui.dribbbgo.view.shot_detail;
 
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.interfaces.DraweeController;
 
 import io.zirui.dribbbgo.R;
 import io.zirui.dribbbgo.model.Shot;
@@ -43,6 +47,11 @@ class ShotAdapter extends RecyclerView.Adapter {
         int viewType = getItemViewType(position);
         switch (viewType){
             case VIEW_TYPE_SHOT_IMAGE:
+                DraweeController controller = Fresco.newDraweeControllerBuilder()
+                        .setUri(Uri.parse(shot.getImageUrl()))
+                        .setAutoPlayAnimations(true)
+                        .build();
+                ((ImageViewHolder) holder).image.setController(controller);
                 break;
             case VIEW_TYPE_SHOT_INFO:
                 InfoViewHolder infoViewHolder = (InfoViewHolder) holder;

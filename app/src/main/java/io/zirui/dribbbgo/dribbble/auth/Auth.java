@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,7 +31,7 @@ public class Auth {
 
     private static final String CLIENT_SECRET = "c101a9c524f2935b0fd981c0153363b9812962fd8f25236e3b9abadf3df80f1e";
 
-    private static final String SCOPE = "public+write";
+    private static final String SCOPE = "public+upload";
 
     private static final String URI_AUTHORIZE = "https://dribbble.com/oauth/authorize";
     public static final String REDIRECT_URI = "https://www.google.com";

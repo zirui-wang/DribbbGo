@@ -1,6 +1,7 @@
 package io.zirui.dribbbgo.model;
 
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import java.util.Date;
@@ -25,23 +26,22 @@ public class Shot {
     public int likes_count;
     public int buckets_count;
 
-    public Date create_at;
+    public Date created_at;
 
     public User user;
 
     public boolean liked;
     public boolean bucketed;
 
-    @Nullable
+    @NonNull
     public String getImageUrl() {
         if (images == null) {
-            return null;
-        } else if (animated) {
-            return images.get(IMAGE_NORMAL);
+            return "";
         }
 
-        return images.containsKey(IMAGE_HIDPI)
+        String url = images.containsKey(IMAGE_HIDPI)
                 ? images.get(IMAGE_HIDPI)
                 : images.get(IMAGE_NORMAL);
+        return url == null ? "" : url;
     }
 }

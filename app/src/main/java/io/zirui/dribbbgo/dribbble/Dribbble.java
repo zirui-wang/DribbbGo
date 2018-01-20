@@ -11,7 +11,9 @@ import com.google.gson.reflect.TypeToken;
 
 
 import java.io.IOException;
+import java.util.List;
 
+import io.zirui.dribbbgo.model.Shot;
 import io.zirui.dribbbgo.model.User;
 import io.zirui.dribbbgo.utils.ModelUtils;
 import okhttp3.OkHttpClient;
@@ -21,14 +23,19 @@ import okhttp3.Response;
 
 public class Dribbble {
 
+    public static final int COUNT_PER_PAGE = 12;
+
     private static final String TAG = "Dribbble API";
 
-    private static final String API_URL = "https://api.dribbble.com/v1/";
+    private static final String API_URL = "https://api.dribbble.com/v2/";
     
     private static final String KEY_ACCESS_TOKEN = "access_token";
     private static final String SP_AUTH = "auth";
-    private static final String USER_END_POINT = API_URL + "user";;
+    private static final String USER_END_POINT = API_URL + "user";
+    private static final String SHOTS_END_POINT = API_URL + "user/shots";
+
     private static final TypeToken<User> USER_TYPE = new TypeToken<User>(){};;
+    private static final TypeToken<List<Shot>> SHOT_LIST_TYPE = new TypeToken<List<Shot>>(){};
 
     private static OkHttpClient client = new OkHttpClient();
 
@@ -86,6 +93,7 @@ public class Dribbble {
     }
 
     private static Request.Builder authRequestBuilder(String url) {
+        System.out.println("---------------" + accessToken);
         return new Request.Builder()
                 .addHeader("Authorization", "Bearer " + accessToken)
                 .url(url);
@@ -99,11 +107,17 @@ public class Dribbble {
     private static <T> T parseResponse(Response response,
                                        TypeToken<T> typeToken) throws IOException, JsonSyntaxException {
         String responseString = response.body().string();
+        System.out.println("---------------" + responseString);
         Log.d(TAG, responseString);
         return ModelUtils.toObject(responseString, typeToken);
     }
 
     public static User getCurrentUser() {
         return user;
+    }
+
+    public static List<Shot> getShots(int page) throws IOException, JsonSyntaxException {
+        String url = SHOTS_END_POINT + "?page=" + page;
+        return parseResponse(makeGetRequest(url), SHOT_LIST_TYPE);
     }
 }
